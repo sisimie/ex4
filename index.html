@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(800,600);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg.png");
+        app.stage.addChild(bg);
+		
+		var startgame = new PIXI.Sprite.fromImage("res/startgame.png");
+		app.stage.addChild(startgame);
+		startgame.x=270;
+		startgame.y=300;
+		startgame.alpha=0.5;
+		
+		var title = new PIXI.Sprite.fromImage("res/title.png");
+		app.stage.addChild(title);
+		title.x=100;
+		title.y=125;
+		
+		var picture1 = new PIXI.Sprite.fromImage("res/picture1.jpeg");
+		app.stage.addChild(picture1);
+		picture1.x=120;
+		picture1.y=40;
+		picture1.visible = false;
+		
+		var answer1 = new PIXI.Sprite.fromImage("res/answer1.png");
+		app.stage.addChild(answer1);
+		answer1.x=130;
+		answer1.y=470;
+		answer1.alpha=0.5;
+		answer1.visible = false;
+		
+		var answer2 = new PIXI.Sprite.fromImage("res/answer2.png");
+		app.stage.addChild(answer2);
+		answer2.x=450;
+		answer2.y=470;
+		answer2.alpha=0.5;
+		answer2.visible = false;
+		
+		var final = new PIXI.Sprite.fromImage("res/final.png");
+		app.stage.addChild(final);
+		final.x=310;
+		final.y=510;
+		final.visible = false;
+		
+		var final0 = new PIXI.Sprite.fromImage("res/final0.png");
+		app.stage.addChild(final0);
+		final0.x=310;
+		final0.y=510;
+		final0.visible = false;
+		
+		var know = new PIXI.Sprite.fromImage("res/know.png");
+		app.stage.addChild(know);
+		know.x=250;
+		know.visible = false;
+		know.alpha = 0.5;
+		
+		var js = new PIXI.Sprite.fromImage("res/jieshao.png");
+		app.stage.addChild(js);
+		js.x = 260;
+		js.y = 150;
+		js.visible = false;
+		js.alpha = 0.5;
+		
+		var role = new PIXI.Sprite.fromImage("res/role.png");
+		app.stage.addChild(role);
+		role.x = 260;
+		role.y = 250;
+		role.visible = false;
+		role.alpha = 0.5;
+		
+		var js1 = new PIXI.Sprite.fromImage("res/js1.png");
+		app.stage.addChild(js1);
+		js1.x = 20;
+		js1.y = 80;
+		js1.visible = false;
+		
+		var last1 = new PIXI.Sprite.fromImage("res/last1.png");
+		app.stage.addChild(last1);
+		last1.y = -15;
+		last1.visible = false;
+		last1.alpha = 0.5;
+		
+		var a = new PIXI.Sprite.fromImage("res/a.jpg");
+		app.stage.addChild(a);
+		a.visible = false;
+		a.alpha = 0.5;
+		a.x = 80;
+		a.y = 100;
+		a.scale.x = 0.5;
+		a.scale.y = 0.5;
+		
+		var b = new PIXI.Sprite.fromImage("res/b.jpg");
+		app.stage.addChild(b);
+		b.visible = false;
+		b.alpha = 0.5;
+		b.x = 450;
+		b.y = 100;
+		b.scale.x = 0.5;
+		b.scale.y = 0.5;
+		
+		var dw = new PIXI.Sprite.fromImage("res/dw.png");
+		app.stage.addChild(dw);
+		dw.visible = false;
+		dw.y = 500;
+		dw.scale.x = 0.5;
+		dw.scale.y = 0.5;
+		
+		var ew = new PIXI.Sprite.fromImage("res/ew.png");
+		app.stage.addChild(ew);
+		ew.visible = false;
+		ew.x = 400;
+		ew.y = 500;
+		ew.scale.x = 0.5;
+		ew.scale.y = 0.5;
+		
+		startgame.interactive = true;
+		startgame.on("mouseover",light1);
+		function light1(){
+			startgame.alpha = 1.0;
+			startgame.buttonMode = true;
+		}
+		startgame.on("mouseout",dark1);
+		function dark1(){
+			startgame.alpha = 0.5;
+		}
+		startgame.on("click",hide1);
+		function hide1(){
+			title.visible = false;
+			startgame.visible = false;
+			picture1.visible = true;
+			answer1.visible = true;
+			answer2.visible = true;
+			know.visible = true;
+		}
+		
+		answer1.interactive = true;
+		answer1.on("mouseover",light2);
+		function light2(){
+			answer1.alpha = 1.0;
+			answer1.buttonMode = true;
+		}
+		answer1.on("mouseout",dark2);
+		function dark2(){
+			answer1.alpha = 0.5;
+		}
+		answer1.on("click",hide2);
+		function hide2(){
+			final.visible = true;
+			final0.visible = false;
+		}
+		
+		answer2.interactive = true;
+		answer2.on("mouseover",light3);
+		function light3(){
+			answer2.alpha = 1.0;
+			answer2.buttonMode = true;
+		}
+		answer2.on("mouseout",dark3);
+		function dark3(){
+			answer2.alpha = 0.5;
+		}
+		answer2.on("click",hide3)
+		function hide3(){
+			final0.visible = true;
+			final.visible = false;
+		}
+		
+		know.interactive = true;
+		know.on("mouseover",light4);
+		function light4(){
+			know.alpha = 1.0;
+			know.buttonMode = true;
+		}
+		know.on("mouseout",dark4);
+		function dark4(){
+			know.alpha = 0.5;
+		}
+		know.on("click",hide4)
+		function hide4(){
+			final0.visible = false;
+			final.visible = false;
+			answer1.visible = false;
+			answer2.visible = false;
+			picture1.visible = false;
+			know.visible = false;
+			js.visible = true;
+			role.visible = true;
+		}
+		
+		js.interactive = true;
+		js.on("mouseover",light5);
+		function light5(){
+			js.alpha = 1.0;
+			js.buttonMode = true;
+		}
+		js.on("mouseout",dark5);
+		function dark5(){
+			js.alpha = 0.5;
+		}
+		js.on("click",hide5)
+		function hide5(){
+			role.visible = false;
+			js.visible = false;
+			js1.visible = true;
+			last1.visible = true;
+		}
+		
+		role.interactive = true;
+		role.on("mouseover",light6);
+		function light6(){
+			role.alpha = 1.0;
+			role.buttonMode = true;
+		}
+		role.on("mouseout",dark6);
+		function dark6(){
+			role.alpha = 0.5;
+		}
+		role.on("click",hide6)
+		function hide6(){
+			role.visible = false;
+			js.visible = false;
+			last1.visible = true;
+			a.visible = true;
+			b.visible = true;
+		}
+		
+		last1.interactive = true;
+		last1.on("mouseover",light7);
+		function light7(){
+			last1.alpha = 1.0;
+			last1.buttonMode = true;
+		}
+		last1.on("mouseout",dark7);
+		function dark7(){
+			last1.alpha = 0.5;
+		}
+		last1.on("click",hide7)
+		function hide7(){
+			role.visible = true;
+			js.visible = true;
+			last1.visible = false;
+			js1.visible = false;
+			a.visible = false;
+			b.visible = false;
+			dw.visible = false;
+			ew.visible = false;
+		}
+		
+		a.interactive = true;
+		a.on("mouseover",light8);
+		function light8(){
+			a.alpha = 1.0;
+			a.buttonMode = true;
+		}
+		a.on("mouseout",dark8);
+		function dark8(){
+			a.alpha = 0.5;
+		}
+		a.on("click",hide8)
+		function hide8(){
+			a.alpha = 1;
+			dw.visible = true;
+		}
+		
+		b.interactive = true;
+		b.on("mouseover",light9);
+		function light9(){
+			b.alpha = 1.0;
+			b.buttonMode = true;
+		}
+		b.on("mouseout",dark9);
+		function dark9(){
+			b.alpha = 0.5;
+		}
+		b.on("click",hide9)
+		function hide9(){
+			b.alpha = 1;
+			ew.visible = true;
+		}
+    </script>
+</body>
+</html>
